@@ -35,9 +35,7 @@ int main(){
 				}
 			}
 		}
-		printf("%d\n",d[1][n]);
-
-		
+		printf("%d\n",d[1][n]);		
 	}
 
 	return 0 ;
