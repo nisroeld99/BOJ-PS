@@ -3,29 +3,37 @@
  *
  */
 
-#include <iostream>
-#include <cstring>
+/*
+ *  10453.cpp
+ */
 #include <vector>
-#include <queue>
+#include <iostream>
 #include <algorithm>
-using namespace std; 
-int main()
-{
-	int N;
-	scanf("%d",&N);
-	for(;N--;)
-	{
-		char a[100001],b[100001];
-		scanf(" %s%s",a,b);
-		int ret=0;
-		int j; 
-		for(int i=0 ; a[i] ; i++ )
-		{
-			for(j=0 ; a[i]!=b[i+j] ; j++)
-				ret++;
-			for(; j ; j--) 
-				b[i+j]=b[i+j-1];
-		}
-		printf("%d\n",ret);
-	}
-} 
+#include <cstring>
+using namespace std;
+
+int main(){
+    int tc;
+    cin >> tc;
+    
+    while (tc--){
+        string s1,s2;
+        cin >> s1 >> s2;
+        vector<int>v1,v2;
+        for (int i = 0 ; i <s1.size(); i++)
+            if ( s1[i] == 'a')
+                v1.push_back(i);
+            
+        
+        for (int i = 0 ;i<s2.size(); i++)
+            if ( s2[i] == 'a')
+                v2.push_back(i);
+        
+        int ans = 0 ;
+        for (int i = 0 ; i<v1.size(); i++)
+            ans += abs(v1[i] - v2[i] ) ;
+        
+        printf("%d\n", ans );
+    }
+}
+
