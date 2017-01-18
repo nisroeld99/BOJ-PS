@@ -2,11 +2,6 @@
  * 11051.cpp
  *
  */
-/*
- 1. 서칭하면서 map에 넣는다. (
- 2.
- 
- */
 
 #include <cstdlib>
 #include <iostream>
