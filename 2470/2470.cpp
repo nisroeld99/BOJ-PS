@@ -12,9 +12,14 @@ using namespace std;
 
 int main() {
     /*
-     * O(n^2)  이면 TLE 가 발생한다.
+     * 모든 경우를  뽑는 전탐색하면 O(n^2)  이면 TLE 가 발생한다.
      * 따라서 더 줄여줘야한다 .
-     * binary_search 를 이용한다 .
+     *  유사 binary_search를 이용해 구해볼 수 있다.
+     *  sorting을 하고, 
+     *  left idx , right idx를 설정해서, 
+     *  한칸씩 좁혀간다. 
+     *  
+     *  sorting 비용 O(n log n)  + O(n)     
      *
      * */
     
