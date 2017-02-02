@@ -18,7 +18,7 @@ int main() {
 	string s1;
 	cin >> s1;
 	
-	for (int i = 0 ; i < s1.si`ze() ; i++)
+	for (int i = 0 ; i < s1.size() ; i++)
 		alpha[ s1[i] -'a' ]  ++ ;
 	
 	for (int i = 0 ; i < 26 ; i++) 
