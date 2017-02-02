@@ -37,7 +37,7 @@ int main(){
                 if (maxx < dq[i].first ){
                     dq.push_back(dq[0]);
                     dq.pop_front();
-                    dq.shrink_to_fit();
+                    dq.shrink_to_fit();  // dq의 크기만큼 줄이겠다는 것 . ( vector에도 있음 reference 참조 ) 
                     ok = false;
                     break;
                 }
