@@ -11,6 +11,15 @@
 using namespace std; 
 
 int main() {
+	/*
+	 *   차집합의 특징을 보면,
+	 *   
+	 *  두개의 값을 더한 후  중복되는 것을 제외해야한다
+	 *
+	 * 답 =  A.size() + B.size() - (A교집합B).size()*2 ; 
+	 * */
+	
+	
 	int n1,n2;
 	scanf("%d%d",&n1,&n2);
 
