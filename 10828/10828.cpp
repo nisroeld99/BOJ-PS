@@ -12,6 +12,10 @@
 using namespace std; 
 
 int main() {
+	/*
+	 *	stack의 기능을 그대로 연습해보는 문제이다. 
+	 *	시키는대로,stl을 이용해 사용해본다. 
+	 * */
 	int n ;
 	scanf("%d",&n) ;
 	stack <int> st ; 
