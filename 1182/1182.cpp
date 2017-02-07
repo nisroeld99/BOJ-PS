@@ -22,12 +22,15 @@ void go(int now,  int sum ) {
         }
         return ;
     }
-    go (now+1 , sum );
-    go (now+1 , sum+ a[now]);
+    go (now+1 , sum ); // 포함 하지 않는 경우 
+    go (now+1 , sum+ a[now]);  // 포함하는 경우 
 }
 
 int main () {
-    
+/*
+ *  dfs이용해서 , 집합을 순회, 
+ *
+ * */   
     scanf("%d%d",&n,&m);
     for (int i = 0 ; i<n ; i++ ){
         scanf("%d",&a[i]);

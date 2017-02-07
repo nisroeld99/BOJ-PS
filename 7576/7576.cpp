@@ -17,7 +17,7 @@ int main() {
     
     int m,n ; // x, y축
     cin >> m>> n;
-    bool cc =false  ;
+    bool cc =false  ;// 애초에 아무것도 없는 경우를 체크하기위해서 cc로 체크해줌
     
     for (int i =1 ; i<=n ;i++ ){
         for (int j=1; j<=m ;j++ ){
@@ -26,11 +26,10 @@ int main() {
             if (g[i][j]  == 1 ) {
                 cc= true ;
                 q.push(ii(i,j));
-            }
-            
+            }       
         }
     }
-    if (cc == false ){
+    if (cc == false ){ //비어있는 경우 
         printf("0\n");
         return 0 ;
     }
@@ -55,7 +54,7 @@ int main() {
         }
     }
     int dab = -1 ;
-    bool c = false ;
+    bool c = false ; // 토마토에 접근할 수 없는경우를 체크한다 
     for (int i =1 ; i<=n ; i++ ){
         for (int j=1 ;j<=m ;j++ ) {
             if (g[i][j] == 0 ){

@@ -35,6 +35,7 @@ void bfs(int from,int to){
 
 
 int main(){
+	/*일반적인 bfs문제이다. 다만 인접리스트로 구현되어있을뿐이다:*/
     int n;
     scanf("%d",&n);
     int from,to;

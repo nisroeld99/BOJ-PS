@@ -35,6 +35,7 @@ void go2(int start){
 
 
 int main(){
+	/*dfs,bfs를 실습해본다:wq*/
     int n,m , v ;
     cin >> n>> m>> v;
     while (m--){

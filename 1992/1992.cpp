@@ -16,6 +16,11 @@ int g[66][66];
 void go (int size , int ypos, int xpos );
 int check (int size , int ypos, int xpos );
 int main(){
+	/**
+	 * main 재귀 함수인 go 와
+	 * go함수 속에서 쿼드 트리인지 확인하는 check 함수  
+	 *
+	 * */
     int n ;
     scanf("%d",&n);
     for (int i =1 ; i<=n ; i++){
