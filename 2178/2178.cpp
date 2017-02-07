@@ -39,7 +39,10 @@ void go (int ypos, int xpos ){
 }
 
 int main() {
-   
+/*
+ *BFS 를 이용해 풀어보기 
+ *
+ * */   
     cin >> n >> m;
     for (int i =1 ; i<=n ; i++ )
         for (int j=1 ;j<=m; j++ ){
