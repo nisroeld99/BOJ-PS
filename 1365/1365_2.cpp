@@ -18,7 +18,7 @@ int main()
             d[++idx] = a[i];
             continue;
         }
-        int temp = lower_bound(a+1, a+1+n , a[i]) - (a+1) ;
+        int temp = lower_bound(d+1, d+idx+1 , a[i]) - (d) ;
         d[temp] = a[i];
     }
     printf("%d\n",n-idx);
