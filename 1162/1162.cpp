@@ -1,67 +1,71 @@
-/*
- * 1162.cpp
- */
-
 #include <iostream>
-#include <queue>
-#include <algorithm>
-#include <cstring>
 #include <vector>
+#include <queue>
 using namespace std;
-typedef pair<int,int>ii;
-typedef pair<int,ii> iii ;
-typedef long long ll;
 const int inf = 987654321;
-const int mod = 0 ; 
-vector<ii> g[10001];
-int d[10001][21];
-bool c[100001];
-
-priority_queue<ii,vector<ii>,greater<ii> >pq; 
-void go (int start, int pave ){
-	memset(c,false ,sizeof(c));
-	pq.push(ii (0,start));
-	d[start][pave]= 0;
-	while (!pq.empty()){
-		int now =pq.top().second;
-		int now_cost = pq.top().first; pq.pop();
-		if ( c[now] ) continue;
-		c[now] = true; 
-		for (int i = 0 ; i< g[now].size () ; ++i){
-			int next = g[now][i].first;
-			int next_cost  = g[now][i].second ; 
-			if ( pave == 0 ) {
-				if (d[next][pave] >  d[now][pave] + next_cost ) {
-					d[next][pave] = d[now][pave]  + next_cost ; 
-					pq.push(ii(d[next][pave], next  ));
-				}
-			}
-			else if (d[next][pave]  > min (d[now][pave] + next_cost , d[now][pave-1] ) 
-) { 
-				d[next][pave] =min(d[now][pave] +next_cost,d[now][pave-1]) ;
-				pq. push(ii(d[next][pave], next));
-			}
-		}
-	}
-}
+typedef pair<int,int> ii ;
+typedef pair<int,ii> iii ;
+vector<ii> g[11111];
+bool c[11111][22];
+int d[11111][22]; //i번째 , k번 포장 갈때 최단거리
 int main(){
-	int n,m , k ;
-	cin >> n >> m >> k ;
-	for (int i =1 ; i<=m ; i++){
-		int from,to ,cost;
-		scanf("%d%d%d",&from,&to,&cost);
-		g[from].push_back(ii(to,cost));
-		g[to].push_back(ii(from,cost));
-	}
-	for (int i = 0 ; i <=n ; i++ ) 
-		for (int j= 0 ;j <= k ; j++ ) 
-			d[i][j] = inf ; 
-
-	for (int i = 0 ; i<= k ;++i) {
-		go (1, i ); 
-	}
-	
-	printf("%d\n", d[n][k]);
-
-	return 0 ;
+ //   freopen("input.txt", "r", stdin);
+    for (int i =0 ; i<11111;i++)
+        for (int j= 0 ;j<22; j++){
+            d[i][j] = inf ;
+        }
+    
+    int n ,m , k ;
+    cin >> n >> m >> k;
+    for (int i = 0 ;i<m ;i++){
+        int from,to ,cost ;
+        scanf("%d%d%d", &from, &to , &cost );
+        g[from].push_back(ii(cost,to));
+        g[to].push_back(ii(cost,from));
+    }
+    
+    priority_queue<iii,vector<iii>,greater<iii> >pq;
+    pq.push(iii(0,ii(1,0))); // cost, now, pavecnt ;
+    d[1][0] = 0;
+    while (!pq.empty()){
+        iii temp = pq.top();
+        int now_cost = temp.first;
+        int now = temp.second.first;
+        int now_pave = temp.second.second;
+        pq.pop();
+        
+        if ( c[now][now_pave] ) continue;
+        c[now][now_pave]= true;
+        
+        //포장하지 않는 경우  k 는 그대로 ( 일반적인 dijkstra )
+        for (auto x : g[now]){
+            int next_cost = now_cost + x.first;
+            int next = x.second;
+            if ( c[next][now_pave] ) continue;
+            if ( d[next][now_pave]  >  next_cost ){
+                d[next][now_pave] = next_cost ;
+                pq.push(iii( next_cost ,ii(next, now_pave) ) );
+            }
+        }
+        
+        //포장하는 경우 k+1 이고 이번 도로는 추가되지 않는다. 근데 k 조건보다 많으면 더이상 포장할수 없으므로 ..
+        if ( now_pave <= k ){
+            for (auto x : g[now ]){
+                int next_cost = now_cost;
+                int next = x.second;
+                if ( c[next][now_pave+1] ) continue;
+                if ( d[next][now_pave+1]  >  next_cost ){
+                    d[next][now_pave+1 ] = next_cost ;
+                    pq.push(iii( next_cost ,ii(next, now_pave + 1 ) ) );
+                }
+            }
+        }
+    }
+    int ans = inf ;
+    for (int i = 0 ; i<=k ; i++){
+        if ( d[n][i] < ans )
+            ans = d[n][i];
+    }
+    cout << ans << endl ;
+    
 }
