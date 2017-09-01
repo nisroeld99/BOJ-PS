@@ -1,35 +1,27 @@
-/*
- * 11051.cpp
- *
- */
-
-#include <cstdlib>
+#include <cstdio>
 #include <iostream>
 #include <vector>
-#include <map>
-#include <queue>
-#include <algorithm>
-#include <cstring>
-#include <ctime>
-
 using namespace std;
-int dp[1001][1001];
-const int mod = 10007;
-int go (int n, int k ){
-    if ( k==0 || n == k ){
-        return 1;
-    }
-    int & ret =dp[n][k] ;
-    if (ret !=-1) return ret ;
-    
-    ret = go ( n-1 , k-1 )%mod + go (n-1,k)%mod;
-    
-    return ret %mod;
-}
+typedef pair<int,int>ii;
 
-int main(){
-    int n , m;
-    scanf("%d%d",&n,&m);
-    memset (dp, -1, sizeof(dp));
-    printf("%d\n",go(n,m));
+const int mod = 10007;
+int main() {
+    int n, k ;
+    int d[1111][1111];
+    
+    scanf("%d%d",&n,&k);
+    
+    for( int i =0; i<=n; i++){
+        d[i][i] = 1;
+        d[i][0] = 1;
+    }
+    
+    for (int i = 1; i<=n; i++){
+        for (int j=1 ;j<=k; j++){
+            d[i][j] = d[i-1][j-1] + d[i-1][j];
+            d[i][j] %=mod;
+        }
+    }
+    
+    printf("%d\n", d[n][k] %mod );
 }
